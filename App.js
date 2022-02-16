@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import Header from './component/header'
+import Nav from './component/header'
 
 console.log('Console hello world !');
 
@@ -13,7 +13,7 @@ export default function App() {
         source={require('./assets/accueil.jpg')}
       />
       {/* <StatusBar style="auto" /> */}
-      <Header/>
+      <Nav/>
     </View>
   )
 }

@@ -1,17 +1,20 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 
-export default function Header(){
+export default function Nav(){
     return(
         <View>
-            <View>
-                <Text style={styles.headerImage}>Coucou</Text>
+            <View style={styles.nav}>
+                
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  nav: {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
     flex: 1,
     width: '100%',
     backgroundColor: '#fff',
