@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Image } from 'react-native'
+import Header from './component/header'
 
-console.log('Console hello world !')
+console.log('Console hello world !');
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         source={require('./assets/accueil.jpg')}
       />
       {/* <StatusBar style="auto" /> */}
+      <Header/>
     </View>
   )
 }
