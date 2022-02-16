@@ -17,9 +17,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Jardins du Luxembourg</Text>
+      <Text style={styles.home}>Jardins du Luxembourg</Text>
       <Image
-        style={styles.headerImage}
+        style={styles.homeImage}
         source={require('./assets/accueil.jpg')}
       />
       {/* <StatusBar style="auto" /> */}
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
-  header: {
+  home: {
     margin: 20,
     fontSize: 40,
     alignItems: 'flex-start',
     width: '100%',
     fontFamily: 'Fedora-Regular',
   },
-  headerImage: {
+  homeImage: {
     height: '30%',
     width: '100%',
   },
