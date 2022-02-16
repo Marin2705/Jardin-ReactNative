@@ -24,7 +24,7 @@ export default function App() {
         source={require('./assets/accueil.jpg')}
       />
       {/* <StatusBar style="auto" /> */}
-      <Nav/>
+      <Nav />
     </View>
   )
 }

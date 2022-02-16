@@ -1,18 +1,16 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 
-export default function Nav(){
-    return(
-        <View>
-            <View style={styles.nav}>
-                
-            </View>
-        </View>
-    );
+export default function Nav() {
+  return (
+    <View>
+      <View style={styles.nav}></View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   nav: {
-    position: "fixed",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     flex: 1,
