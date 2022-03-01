@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import Nav from './component/header'
+import Nav from './component/Header'
 
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
@@ -24,7 +24,7 @@ export default function App() {
         source={require('./assets/accueil.jpg')}
       />
       {/* <StatusBar style="auto" /> */}
-      <Nav />
+      <Nav style={styles.nav}/>
     </View>
   )
 }
