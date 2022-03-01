@@ -6,6 +6,7 @@ import {
   Dimensions,
   ScrollView,
   Pressable,
+  Button,
 } from 'react-native'
 import { useState, useEffect } from 'react'
 import bgImage from '../assets/home.jpg'
@@ -17,7 +18,7 @@ const screen = Dimensions.get('screen')
 const vw = Dimensions.get('window').width
 const vh = Dimensions.get('window').height
 
-function Home() {
+function Home({ navigation }) {
   const [dimensions, setDimensions] = useState({ window, screen })
 
   useEffect(() => {
@@ -43,6 +44,10 @@ function Home() {
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
             </Pressable>
+            <Button
+              title="Go to Test"
+              onPress={() => navigation.navigate('Test', { name: 'Test' })}
+            />
             <ScrollArrow style={styles.ScrollArrow} />
           </View>
         </ImageBackground>
