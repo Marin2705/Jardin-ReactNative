@@ -39,15 +39,11 @@ function Home({ navigation }) {
             <HomePointer style={styles.homePointer} />
             <Text style={styles.text}>Le jardin du Luxembourg</Text>
             <Pressable
-              onPress={() => console.log('btn')}
+              onPress={() => navigation.navigate('Test', { name: 'Test' })}
               style={styles.Pressable}
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
             </Pressable>
-            <Button
-              title="Go to Test"
-              onPress={() => navigation.navigate('Test', { name: 'Test' })}
-            />
             <ScrollArrow style={styles.ScrollArrow} />
           </View>
         </ImageBackground>
