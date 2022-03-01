@@ -5,8 +5,6 @@ import Home from './component/Home'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
 
-console.log('Console hello world !')
-
 export default function App() {
   let [fontsLoaded] = useFonts({
     'Fedora-Regular': require('./assets/fonts/Federo-Regular.ttf'),
