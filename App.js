@@ -36,7 +36,11 @@ export default function App() {
           <Stack.Screen name="Test" component={Test} />
         </Stack.Navigator>
       </NavigationContainer>
-      <Nav />
+      {/* <Nav /> */}
+      <View style={styles.nav}>
+        <Nav style={styles.nav} />
+      </View>
+      {/* <Home/> */}
     </View>
   )
 }
@@ -45,4 +49,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  nav: {},
 })
