@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import Nav from './component/header'
+import Nav from './component/Header'
 import Home from './component/Home'
 
 import AppLoading from 'expo-app-loading'
@@ -18,14 +18,20 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Home />
-      <Nav />
+      <View style={styles.nav}>
+        <Nav style={styles.nav}/>
+      </View>
+      <Home/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
+  nav: {
+    
+  }
+
 })
