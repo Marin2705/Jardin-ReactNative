@@ -6,7 +6,7 @@ function Test({ navigation }) {
       <Text>Test</Text>
       <Button
         title="Go to Home"
-        onPress={() => navigation.navigate('Home', { name: 'Home' })}
+        onPress={() => navigation.navigate('HomeMain', { name: 'HomeMain' })}
       />
     </>
   )

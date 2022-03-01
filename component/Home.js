@@ -9,16 +9,20 @@ import {
   Button,
 } from 'react-native'
 import { useState, useEffect } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
 import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Test from './Test'
 
+const Stack = createNativeStackNavigator()
 const window = Dimensions.get('window')
 const screen = Dimensions.get('screen')
 const vw = Dimensions.get('window').width
 const vh = Dimensions.get('window').height
 
-function Home({ navigation }) {
+function HomeMain({ navigation }) {
   const [dimensions, setDimensions] = useState({ window, screen })
 
   useEffect(() => {
@@ -39,7 +43,7 @@ function Home({ navigation }) {
             <HomePointer style={styles.homePointer} />
             <Text style={styles.text}>Le jardin du Luxembourg</Text>
             <Pressable
-              onPress={() => navigation.navigate('Test', { name: 'Test' })}
+              onPress={() => navigation.navigate('Test3', { name: 'Test' })}
               style={styles.Pressable}
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
@@ -57,6 +61,33 @@ function Home({ navigation }) {
           </Text>
         </View>
       </ScrollView>
+    </>
+  )
+}
+
+function Home({ navigation }) {
+  const [dimensions, setDimensions] = useState({ window, screen })
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      'change',
+      ({ window, screen }) => {
+        setDimensions({ window, screen })
+      }
+    )
+    return () => subscription?.remove()
+  })
+
+  return (
+    <>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="HomeMain" component={HomeMain} />
+        <Stack.Screen name="Test3" component={Test} />
+      </Stack.Navigator>
     </>
   )
 }
