@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import Home from './component/Home'
-import Test from './component/Test'
+import Map from './component/Map'
 import Surroundings from './component/Surroundings'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
@@ -31,7 +31,7 @@ export default function App() {
         >
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Surroundings" component={Surroundings} />
-          <Tab.Screen name="Test" component={Test} />
+          <Tab.Screen name="Map" component={Map} />
         </Tab.Navigator>
       </NavigationContainer>
     </View>

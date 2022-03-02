@@ -14,7 +14,7 @@ import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Test from './Test'
+import Map from './Map'
 
 const Stack = createNativeStackNavigator()
 const window = Dimensions.get('window')
@@ -43,7 +43,7 @@ function HomeMain({ navigation }) {
             <HomePointer style={styles.homePointer} />
             <Text style={styles.text}>Le jardin du Luxembourg</Text>
             <Pressable
-              onPress={() => navigation.navigate('Test3', { name: 'Test' })}
+              onPress={() => navigation.navigate('Map', { name: 'Map' })}
               style={styles.Pressable}
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
@@ -86,7 +86,7 @@ function Home({ navigation }) {
         }}
       >
         <Stack.Screen name="HomeMain" component={HomeMain} />
-        <Stack.Screen name="Test3" component={Test} />
+        <Stack.Screen name="Map" component={Map} />
       </Stack.Navigator>
     </>
   )
