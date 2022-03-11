@@ -1,6 +1,16 @@
-import { StyleSheet, Text, Button, Dimensions, View } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  Button,
+  Dimensions,
+  View,
+  NativeModules,
+} from 'react-native'
 import * as React from 'react'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+
+const { StatusBarManager } = NativeModules
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT
 
 function Map({ navigation }) {
   return (
@@ -38,6 +48,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
     // alignItems: 'center',
     // justifyContent: 'center',
+    paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT : 0,
   },
   map: {
     width: Dimensions.get('window').width,

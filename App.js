@@ -1,5 +1,6 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import Home from './component/Home'
+import Quizz from './component/Quizz'
 import Map from './component/Map'
 import Info from './component/Info'
 import People from './component/People'
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
