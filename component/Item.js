@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native'
 function Item(props) {
     return (
         <View style={styles.item}>
+             {/* <Text>{props.data}</Text> */}
             <View style={[styles.map, {flex: 1}]}>
                 {/* Carte */}
             </View>
