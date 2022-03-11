@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import Home from './component/Home'
+import Quizz from './component/Quizz'
 import Map from './component/Map'
 import Surroundings from './component/Surroundings'
 import AppLoading from 'expo-app-loading'
@@ -32,6 +33,7 @@ export default function App() {
         >
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="Surroundings" component={Surroundings} />
+          <Tab.Screen name="Quizz" component={Quizz} />
           <Tab.Screen name="Map" component={Map} />
         </Tab.Navigator>
       </NavigationContainer>
