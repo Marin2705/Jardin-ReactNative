@@ -1,13 +1,19 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import Nav from './component/Header'
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import Home from './component/Home'
+import Map from './component/Map'
+import Surroundings from './component/Surroundings'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   let [fontsLoaded] = useFonts({
     'Fedora-Regular': require('./assets/fonts/Federo-Regular.ttf'),
-    'Exo-Regular':  require('./assets/fonts/Exo-Regular.ttf'),
+    'Exo-Regular': require('./assets/fonts/Exo-Regular.ttf'),
   })
 
   if (!fontsLoaded) {
@@ -16,20 +22,25 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.nav}>
-        <Nav style={styles.nav}/>
-      </View>
-      <Home/>
+      <StatusBar />
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Home"
+        >
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Surroundings" component={Surroundings} />
+          <Tab.Screen name="Map" component={Map} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
-  nav: {
-    
-  }
-
 })

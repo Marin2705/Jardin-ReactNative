@@ -1,6 +1,13 @@
 import { render } from 'react-dom';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, Pressable, Image, Animated, Modal } from 'react-native'
+import { StyleSheet, View, Text, FlatList, Pressable, Image, Modal } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Image,
+} from 'react-native'
 import Item from './Item'
 import NewEvent from './NewEvent'
 

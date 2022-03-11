@@ -6,18 +6,22 @@ import {
   Dimensions,
   ScrollView,
   Pressable,
+  Button,
 } from 'react-native'
 import { useState, useEffect } from 'react'
 import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Map from './Map'
 
+const Stack = createNativeStackNavigator()
 const window = Dimensions.get('window')
 const screen = Dimensions.get('screen')
 const vw = Dimensions.get('window').width
 const vh = Dimensions.get('window').height
 
-function Home() {
+function HomeMain({ navigation }) {
   const [dimensions, setDimensions] = useState({ window, screen })
 
   useEffect(() => {
@@ -38,7 +42,7 @@ function Home() {
             <HomePointer style={styles.homePointer} />
             <Text style={styles.text}>Le jardin du Luxembourg</Text>
             <Pressable
-              onPress={() => console.log('btn')}
+              onPress={() => navigation.navigate('Map', { name: 'Map' })}
               style={styles.Pressable}
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
@@ -56,6 +60,33 @@ function Home() {
           </Text>
         </View>
       </ScrollView>
+    </>
+  )
+}
+
+function Home({ navigation }) {
+  const [dimensions, setDimensions] = useState({ window, screen })
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      'change',
+      ({ window, screen }) => {
+        setDimensions({ window, screen })
+      }
+    )
+    return () => subscription?.remove()
+  })
+
+  return (
+    <>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="HomeMain" component={HomeMain} />
+        <Stack.Screen name="Map" component={Map} />
+      </Stack.Navigator>
     </>
   )
 }
@@ -101,7 +132,7 @@ const styles = StyleSheet.create({
   },
   ScrollArrow: {
     position: 'relative',
-    top: 100,
+    top: '7%',
   },
   presentation: {
     height: vh,
