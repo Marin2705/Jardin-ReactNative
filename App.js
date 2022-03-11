@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import Home from './component/Home'
 import Map from './component/Map'
 import Surroundings from './component/Surroundings'
@@ -22,6 +22,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{

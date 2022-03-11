@@ -9,7 +9,6 @@ import {
   Button,
 } from 'react-native'
 import { useState, useEffect } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
 import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
   },
   ScrollArrow: {
     position: 'relative',
-    top: 100,
+    top: '7%',
   },
   presentation: {
     height: vh,
