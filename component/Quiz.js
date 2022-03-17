@@ -1,27 +1,55 @@
-import { StyleSheet, View, Text } from 'react-native'
+import { useState } from 'react'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
-function Quiz() {
+function QuizView(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.quizH1}>Quiz</Text>
       <View style={[styles.textContainer, styles.question]}>
-        <Text style={styles.questionText}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </Text>
+        <Text style={styles.questionText}>{props.questionText}</Text>
       </View>
-      <View style={[styles.textContainer, styles.answer]}>
-        <Text style={styles.questionText}>Réponse 1</Text>
-      </View>
-      <View style={[styles.textContainer, styles.answer]}>
-        <Text style={styles.questionText}>Réponse 1</Text>
-      </View>
-      <View style={[styles.textContainer, styles.answer]}>
-        <Text style={styles.questionText}>Réponse 1</Text>
-      </View>
-      <View style={[styles.textContainer, styles.answer]}>
-        <Text style={styles.questionText}>Réponse 1</Text>
-      </View>
+      {props.answers.map((answer, i) => {
+        let valid =
+          props.answered && (answer.valid ? styles.valid : styles.wrong)
+        return (
+          <TouchableOpacity
+            style={[styles.textContainer, styles.answer, valid]}
+            key={i + 1}
+            onPress={() => {
+              props.setAnswered(i + 1)
+            }}
+          >
+            <Text style={styles.questionText}>{answer.text}</Text>
+          </TouchableOpacity>
+        )
+      })}
+      {props.answered && (
+        <TouchableOpacity
+          style={[styles.textContainer, styles.answer]}
+          onPress={() => {
+            props.setAnswered(false)
+          }}
+        >
+          <Text style={styles.questionText}>Suivant</Text>
+        </TouchableOpacity>
+      )}
     </View>
+  )
+}
+
+function Quiz() {
+  const [answered, setAnswered] = useState(false)
+
+  return (
+    <QuizView
+      questionText="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+      answers={[
+        { text: 'Réponse 1', valid: true },
+        { text: 'Réponse 2', valid: false },
+      ]}
+      answered={answered}
+      setAnswered={setAnswered}
+    />
   )
 }
 
@@ -60,6 +88,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Fedora-Regular',
+  },
+  valid: {
+    backgroundColor: '#44991D',
+  },
+  wrong: {
+    borderColor: 'red',
+    backgroundColor: 'red',
   },
 })
 
