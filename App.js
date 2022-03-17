@@ -54,7 +54,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Formulaire"
-            component={Map}
+            component={Quiz}
             options={{
               tabBarLabel: 'Formulaire',
               tabBarIcon: () => <Form />,
