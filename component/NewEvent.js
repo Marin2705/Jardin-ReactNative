@@ -8,9 +8,28 @@ function NewEvent({childToParent}) {
     // generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
 
     const [touchY, setTouchY] = useState(0);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [address, setAddress] = useState('');
+
+    const onSubmit = () => {
+        let data = {'name': name, 'description' : description, 'address': address}
+
+        fetch('http:///172.24.141.205/reactnative/Jardin-ReactNative/assets/api/insertData.php',  {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            childToParent();
+        })
+    }
 
     return (
-        <KeyboardAvoidingView style={[styles.popup, styles.boxShadow]} behavior="height">
+        <KeyboardAvoidingView style={[styles.popup, styles.boxShadow]} >
 
             {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
             <Pressable style={{paddingVertical: 15}}
@@ -23,31 +42,38 @@ function NewEvent({childToParent}) {
             >
                 <View style={styles.handle}></View>    
             </Pressable>
-            
 
             <ScrollView style={styles.form}>
                 <View>
                     <Text>Nom</Text>
-                    <TextInput style={styles.input}></TextInput>
+                    <TextInput style={styles.input} 
+                    placeholder="Type here to translate!"
+                    onChangeText={insertedName => setName(insertedName)}
+                    defaultValue={name} />
                 </View>
                 <View>
                     <Text>Description</Text>
-                    <TextInput style={styles.input}></TextInput>
+                    <TextInput style={styles.input}
+                    placeholder="Type here to translate!"
+                    onChangeText={insertedDesc => setDescription(insertedDesc)}
+                    defaultValue={description} />
                 </View>
                 <View>
                     <Text>Adresse</Text>
-                    <TextInput style={styles.input}></TextInput>
+                    <TextInput style={styles.input}
+                    placeholder="Type here to translate!"
+                    onChangeText={insertedAddress => setAddress(insertedAddress)}
+                    defaultValue={address} />
                 </View>
-        
+
                 <View style={styles.map}>
                     {/* Localisation correspondant à l'adresse saisie */}
                 </View>
-                <Pressable style={styles.button} onPress={() => {
-                    alert('Partager')
-                }}>
+                
+                <Pressable style={styles.button} onPress={onSubmit}>
                     <Text style={styles.textButton}>Partager</Text>
                 </Pressable>
-            </ScrollView>
+            </ScrollView> 
         </KeyboardAvoidingView>
     )
 }
@@ -80,7 +106,6 @@ function NewEvent({childToParent}) {
 const styles = StyleSheet.create({
     popup: {
         width: '100%',
-        // paddingTop: 30,
         paddingHorizontal: 40,
         backgroundColor: '#FFFFFF',
         position: 'absolute',
