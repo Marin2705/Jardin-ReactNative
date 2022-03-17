@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   Button,
   Dimensions,
   View,
