@@ -6,7 +6,7 @@ import {
   Modal,
   Pressable,
 } from 'react-native'
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Svg, { Path } from 'react-native-svg'
 import { LinearGradient } from 'expo-linear-gradient'
 
