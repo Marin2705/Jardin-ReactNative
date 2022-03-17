@@ -8,7 +8,7 @@ import {
   Pressable,
   Button,
 } from 'react-native'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
@@ -23,6 +23,7 @@ const vh = Dimensions.get('window').height
 
 function HomeMain({ navigation }) {
   const [dimensions, setDimensions] = useState({ window, screen })
+  const scrollRef = useRef()
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
@@ -36,7 +37,7 @@ function HomeMain({ navigation }) {
 
   return (
     <>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView style={styles.scrollView} ref={scrollRef}>
         <ImageBackground source={bgImage} resizeMode="cover" style={styles.bg}>
           <View style={styles.container}>
             <HomePointer style={styles.homePointer} />
@@ -47,7 +48,15 @@ function HomeMain({ navigation }) {
             >
               <Text style={styles.PressableText}>Voir la carte</Text>
             </Pressable>
-            <ScrollArrow style={styles.ScrollArrow} />
+            <ScrollArrow
+              style={styles.ScrollArrow}
+              onPress={() => {
+                scrollRef.current?.scrollTo({
+                  y: vh,
+                  animated: true,
+                })
+              }}
+            />
           </View>
         </ImageBackground>
         <View style={styles.presentation}>

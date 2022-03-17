@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View, Image, StatusBar } from 'react-native'
 import Home from './component/Home'
-import Quizz from './component/Quizz'
+import Quiz from './component/Quiz'
 import Map from './component/Map'
+import Info from './component/Info'
+import People from './component/People'
+import Form from './component/Form'
+import Share from './component/Share'
 import Surroundings from './component/Surroundings'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
 import * as React from 'react'
+import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -31,10 +36,38 @@ export default function App() {
           }}
           initialRouteName="Home"
         >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Surroundings" component={Surroundings} />
-          <Tab.Screen name="Quizz" component={Quizz} />
-          <Tab.Screen name="Map" component={Map} />
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarLabel: 'Home',
+              tabBarIcon: () => <Info />,
+            }}
+          />
+          <Tab.Screen
+            name="Surroundings"
+            component={Surroundings}
+            options={{
+              tabBarLabel: 'Surroundings',
+              tabBarIcon: () => <People />,
+            }}
+          />
+          <Tab.Screen
+            name="Formulaire"
+            component={Quiz}
+            options={{
+              tabBarLabel: 'Formulaire',
+              tabBarIcon: () => <Form />,
+            }}
+          />
+          <Tab.Screen
+            name="Partager"
+            component={Share}
+            options={{
+              tabBarLabel: 'Partager',
+              tabBarIcon: () => <Share />,
+            }}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </View>
