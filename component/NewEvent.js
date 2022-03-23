@@ -12,13 +12,23 @@ import MapContainer from './MapContainer'
 
 // Accepter la fonction childToParent passée en prop
 function NewEvent({ childToParent }) {
+
   // BOX SHADOW QUI FONCTIONNE SEULEMENT SUR MOBILE ???
   // generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
 
   const [touchY, setTouchY] = useState(0)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [address, setAddress] = useState('')
+  const [address, setAddress] = useState([2.337179, 48.846836])
+  const apitoken = "pk.eyJ1IjoiZWxvcG4iLCJhIjoiY2t3dnRsNm5zMjNwcTJ3cDNjdjB1cWNldCJ9.tH301UpWotwarxl8l7w9HA"
+
+  const getCoord = (input) => {
+      fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/" + input + ".json?access_token=" + apitoken).then(response => {
+          response.json().then(value => {
+              setAddress(value.features[0].center)
+          })
+      })
+  }
 
     const onSubmit = () => {
         let data = { name: name, description: description, address: address }
@@ -56,27 +66,27 @@ function NewEvent({ childToParent }) {
                     <View>
                         <Text>Nom</Text>
                         <TextInput style={styles.input}
-                        placeholder="Type here to translate!"
+                        placeholder="Nom du lieu"
                         onChangeText={insertedName => setName(insertedName)}
                         defaultValue={name} />
                     </View>
                     <View>
                         <Text>Description</Text>
                         <TextInput style={styles.input}
-                        placeholder="Type here to translate!"
+                        placeholder="Description du lieu"
                         onChangeText={insertedDesc => setDescription(insertedDesc)}
                         defaultValue={description} />
                     </View>
                     <View>
                         <Text>Adresse</Text>
                         <TextInput style={styles.input}
-                        placeholder="Type here to translate!"
-                        onChangeText={insertedAddress => setAddress(insertedAddress)}
+                        placeholder="Adresse du lieu"
+                        onChangeText={insertedAddress => getCoord(insertedAddress)}
                         defaultValue={address} />
                     </View>
                     <View style={styles.map}>
                         {/* Localisation correspondant à l'adresse saisie */}
-                        <MapContainer lat={48.846836} long={2.337179} />
+                        <MapContainer lat={address[1]} long={address[0]} name={name} description={description} />
                     </View>
                 
                     <Pressable style={styles.button} onPress={onSubmit}>
