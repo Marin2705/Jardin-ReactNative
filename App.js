@@ -94,16 +94,7 @@ export default function App() {
           }}
           style={styles.modal}
         >
-          <ShareEvent childToParent={childToParent} />
-          {/* <View style={styles.modalShare}>
-              <Text style={styles.modalText}>Donnez-nous votre avis !</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View> */}
+        <ShareEvent childToParent={childToParent}/>
         </Modal>
       </View>
   )

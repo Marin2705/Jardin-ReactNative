@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import {
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Pressable,
-  KeyboardAvoidingView,
   Linking,
 } from 'react-native'
 import Facebook from './Facebook';
@@ -18,7 +16,7 @@ function ShareEvent({ childToParent }) {
   const [touchY, setTouchY] = useState(0);
 
   return (
-    <KeyboardAvoidingView style={styles.popup}>
+    <View style={styles.popup}>
       {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
       <Pressable
         style={{ paddingVertical: 15 }}
@@ -43,7 +41,7 @@ function ShareEvent({ childToParent }) {
         <Facebook/>
       </Pressable>
 
-    </KeyboardAvoidingView>
+    </View>
   )
 }
 
