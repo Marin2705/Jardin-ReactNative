@@ -12,11 +12,13 @@
             echo(json_encode($results));
             break;
         case 'addEvent' :
-            $stmt = $db -> prepare("INSERT INTO partage VALUES (NULL, :name, :description, CURRENT_TIMESTAMP, 5)");
+            $stmt = $db -> prepare("INSERT INTO partage VALUES (NULL, :name, :description, CURRENT_TIMESTAMP, 5, :lat, :long)");
             echo json_encode($data);
             $stmt->execute(array(
                 ':name' => $data["name"],
-                ':description' => $data["description"]
+                ':description' => $data["description"],
+                ':lat' => $data["lat"],
+                ':long' => $data["long"]
             )); 
             break;
         case 'addLike' :

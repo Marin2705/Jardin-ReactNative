@@ -31,9 +31,9 @@ function NewEvent({ childToParent }) {
   }
 
     const onSubmit = () => {
-        let data = { name: name, description: description, address: address }
+        let data = { name: name, description: description, lat: address[1], long: address[0] }
 
-        fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addEvent',
+        fetch('https://perso-etudiant.u-pem.fr/~elodie.pan/api/Surroundings.php?action=addEvent',
         {
             headers: {
                 'Accept': 'application/json',
@@ -83,6 +83,7 @@ function NewEvent({ childToParent }) {
                         placeholder="Adresse du lieu"
                         onChangeText={insertedAddress => getCoord(insertedAddress)}
                         defaultValue={address} />
+                        <Text>{address[1] + " " + address[0]}</Text>
                     </View>
                     <View style={styles.map}>
                         {/* Localisation correspondant à l'adresse saisie */}

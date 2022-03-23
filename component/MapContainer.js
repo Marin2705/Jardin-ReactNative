@@ -6,8 +6,8 @@ function MapContainer(props) {
     <MapView
       style={styles.map}
       initialRegion={{
-        latitude: props.lat,
-        longitude: props.long,
+        latitude: parseFloat(props.lat),
+        longitude: parseFloat(props.long),
         latitudeDelta: props.delta ? props.delta : 0.005,
         longitudeDelta: props.delta ? props.delta : 0.005,
       }}
@@ -17,9 +17,8 @@ function MapContainer(props) {
       provider={PROVIDER_GOOGLE}
     >
       <Marker
-        coordinate={{ latitude: props.lat, longitude: props.long }}
-        title={'Jardin du Luxembourg'}
-        description={'lorem'}
+        coordinate={{ latitude: parseFloat(props.lat), longitude: parseFloat(props.long) }}
+        title={props.name}
       />
     </MapView>
   )
