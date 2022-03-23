@@ -76,10 +76,7 @@ function NewEvent({ childToParent }) {
                     </View>
                     <View style={styles.map}>
                         {/* Localisation correspondant à l'adresse saisie */}
-<<<<<<< HEAD
-=======
                         <MapContainer lat={48.846836} long={2.337179} />
->>>>>>> e3644b7006e6919fa7cef8d689bc1918189a8eca
                     </View>
                 
                     <Pressable style={styles.button} onPress={onSubmit}>
