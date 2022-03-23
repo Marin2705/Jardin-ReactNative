@@ -3,6 +3,8 @@ import AsyncStorage  from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect } from 'react';
 import likeOff from '../assets//likeOff.png'
 import likeOn from '../assets/likeOn.png'
+import { PanResponder } from 'react-native-web';
+import MapContainer from './MapContainer'
 
 
 function Item(props) {
@@ -33,7 +35,7 @@ function Item(props) {
             })
 
             // Retirer le like de la bdd
-            fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=deleteLike',
+            fetch('https://perso-etudiant.u-pem.fr/~elodie.pan/api/Surroundings.php?action=deleteLike' ,
                 {
                     headers: {
                         'Accept': 'application/json',
@@ -62,7 +64,7 @@ function Item(props) {
             })
                        
             // Ajouter le like dans la bdd
-            fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addLike',
+            fetch('https://perso-etudiant.u-pem.fr/~elodie.pan/api/Surroundings.php?action=addLike',
             {
                 headers: {
                     'Accept': 'application/json',
@@ -76,9 +78,9 @@ function Item(props) {
 
     return (
         <View style={styles.item}>
-            <View style={[styles.map, {flex: 1}]}>
-                <Text>{props.data.id}</Text>
-                {/* Carte */}
+            <View style={styles.map}>
+                {/* Localisation correspondant à l'adresse saisie */}
+                <MapContainer lat={props.data.latitude} long={props.data.longitude} name={props.data.nom} description={props.data.description} />
             </View>
 
             <View style={[styles.infos, {flex: 1.5}]}>

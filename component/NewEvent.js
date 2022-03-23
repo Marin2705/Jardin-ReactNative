@@ -41,23 +41,22 @@ function NewEvent({ childToParent }) {
     }, 600)
   }
 
-  const onSubmit = () => {
-    let data = { name: name, description: description, address: address }
+    const onSubmit = () => {
+        let data = { name: name, description: description, lat: address[1], long: address[0] }
 
-    fetch(
-      'http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addEvent',
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      }
-    ).then(() => {
-      childToParent()
-    })
-  }
+        fetch('https://perso-etudiant.u-pem.fr/~elodie.pan/api/Surroundings.php?action=addEvent',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            childToParent();
+        })
+    }
 
   return (
     <View style={[styles.popup, styles.boxShadow]}>
