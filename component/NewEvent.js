@@ -15,7 +15,8 @@ function NewEvent({childToParent}) {
     const onSubmit = () => {
         let data = {'name': name, 'description' : description, 'address': address}
 
-        fetch('http:///172.24.141.205/reactnative/Jardin-ReactNative/assets/api/insertData.php',  {
+        fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addEvent',
+        {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -29,7 +30,7 @@ function NewEvent({childToParent}) {
     }
 
     return (
-        <KeyboardAvoidingView style={[styles.popup, styles.boxShadow]} >
+        <View style={[styles.popup, styles.boxShadow]}>
 
             {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
             <Pressable style={{paddingVertical: 15}}
@@ -38,43 +39,43 @@ function NewEvent({childToParent}) {
                 if (e.nativeEvent.pageY - touchY > 20) {
                     childToParent()
                 }
-            }}
-            >
-                <View style={styles.handle}></View>    
+            }}>
+                <View style={styles.handle}></View>
             </Pressable>
 
-            <ScrollView style={styles.form}>
-                <View>
-                    <Text>Nom</Text>
-                    <TextInput style={styles.input} 
-                    placeholder="Type here to translate!"
-                    onChangeText={insertedName => setName(insertedName)}
-                    defaultValue={name} />
-                </View>
-                <View>
-                    <Text>Description</Text>
-                    <TextInput style={styles.input}
-                    placeholder="Type here to translate!"
-                    onChangeText={insertedDesc => setDescription(insertedDesc)}
-                    defaultValue={description} />
-                </View>
-                <View>
-                    <Text>Adresse</Text>
-                    <TextInput style={styles.input}
-                    placeholder="Type here to translate!"
-                    onChangeText={insertedAddress => setAddress(insertedAddress)}
-                    defaultValue={address} />
-                </View>
-
-                <View style={styles.map}>
-                    {/* Localisation correspondant à l'adresse saisie */}
-                </View>
+            <KeyboardAvoidingView  behavior="height">
+                <ScrollView style={styles.form}>
+                    <View>
+                        <Text>Nom</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedName => setName(insertedName)}
+                        defaultValue={name} />
+                    </View>
+                    <View>
+                        <Text>Description</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedDesc => setDescription(insertedDesc)}
+                        defaultValue={description} />
+                    </View>
+                    <View>
+                        <Text>Adresse</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedAddress => setAddress(insertedAddress)}
+                        defaultValue={address} />
+                    </View>
+                    <View style={styles.map}>
+                        {/* Localisation correspondant à l'adresse saisie */}
+                    </View>
                 
-                <Pressable style={styles.button} onPress={onSubmit}>
-                    <Text style={styles.textButton}>Partager</Text>
-                </Pressable>
-            </ScrollView> 
-        </KeyboardAvoidingView>
+                    <Pressable style={styles.button} onPress={onSubmit}>
+                        <Text style={styles.textButton}>Partager</Text>
+                    </Pressable>
+                </ScrollView> 
+            </KeyboardAvoidingView>
+        </View>
     )
 }
 

@@ -25,7 +25,7 @@ function Surroundings() {
     async function fetchData() {
       try {
         const response = await fetch(
-          'http:///172.24.141.205/reactnative/Jardin-ReactNative/assets/api/getData.php'
+          'http:///172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=getEvents'
         );
         const json = await response.json();
         setData(json)
