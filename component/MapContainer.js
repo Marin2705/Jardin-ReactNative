@@ -19,7 +19,7 @@ function MapContainer(props) {
       <Marker
         coordinate={{ latitude: props.lat, longitude: props.long }}
         title={'Jardin du Luxembourg'}
-        description={'lorem'}
+        description={'Localisation du jardin'}
       />
     </MapView>
   )
