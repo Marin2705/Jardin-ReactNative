@@ -8,9 +8,12 @@ function MapContainer(props) {
       initialRegion={{
         latitude: props.lat,
         longitude: props.long,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: props.delta ? props.delta : 0.005,
+        longitudeDelta: props.delta ? props.delta : 0.005,
       }}
+      minZoomLevel={15}
+      maxZoomLevel={20}
+      mapType={props.type ? props.type : 'standard'}
       provider={PROVIDER_GOOGLE}
     >
       <Marker
