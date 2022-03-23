@@ -6,6 +6,7 @@ import Info from './component/Info'
 import People from './component/People'
 import Form from './component/Form'
 import Share from './component/Share'
+import ShareEvent from './component/ShareEvent'
 import Surroundings from './component/Surroundings'
 import AppLoading from 'expo-app-loading'
 import { useFonts } from 'expo-font'
@@ -23,6 +24,10 @@ export default function App() {
     'Fedora-Regular': require('./assets/fonts/Federo-Regular.ttf'),
     'Exo-Regular': require('./assets/fonts/Exo-Regular.ttf'),
   })
+
+  const childToParent = () => {
+    setModalVisible(false);
+  }
 
   if (!fontsLoaded) {
     return <AppLoading />
@@ -89,7 +94,8 @@ export default function App() {
           }}
           style={styles.modal}
         >
-          <View style={styles.modalShare}>
+          <ShareEvent childToParent={childToParent} />
+          {/* <View style={styles.modalShare}>
               <Text style={styles.modalText}>Donnez-nous votre avis !</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
@@ -97,7 +103,7 @@ export default function App() {
               >
                 <Text style={styles.textStyle}>Hide Modal</Text>
               </Pressable>
-            </View>
+            </View> */}
         </Modal>
       </View>
   )
@@ -106,14 +112,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  modal: {
-    flex: 1,
-    height: 50,
-  },
-  modalShare: {
-    flex: 1,
-    marginTop: "75%",
-    backgroundColor: '#FFFFFF',
-  },
+  }
 })
