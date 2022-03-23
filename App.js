@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar, Pressable, Modal } from 'react-native'
+import { StyleSheet, View, StatusBar, Modal } from 'react-native'
 import Home from './component/Home'
 import Quiz from './component/Quiz'
-import Map from './component/Map'
 import Info from './component/Info'
 import People from './component/People'
 import Form from './component/Form'
@@ -14,7 +13,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { LinearGradient } from 'expo-linear-gradient'
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
 const Tab = createBottomTabNavigator();
 
@@ -94,16 +93,7 @@ export default function App() {
           }}
           style={styles.modal}
         >
-          <ShareEvent childToParent={childToParent} />
-          {/* <View style={styles.modalShare}>
-              <Text style={styles.modalText}>Donnez-nous votre avis !</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View> */}
+          <ShareEvent childToParent={childToParent}/>
         </Modal>
       </View>
   )
@@ -112,5 +102,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 })
