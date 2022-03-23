@@ -18,6 +18,27 @@ const screen = Dimensions.get('screen')
 const vw = Dimensions.get('window').width
 const vh = Dimensions.get('window').height
 
+function AnswerBtn(props) {
+  let valid = props.answered && props.answer.valid && styles.valid
+  if (!valid && props.answered && props.answered == props.i + 1) {
+    valid = styles.wrong
+  }
+  return (
+    <TouchableOpacity
+      style={[styles.textContainer, styles.answer, valid]}
+      key={props.i}
+      onPress={() => {
+        if (!props.answered) {
+          props.setAnswered(props.i + 1)
+          props.setStat([...props.stat, props.answer.valid])
+        }
+      }}
+    >
+      <Text style={styles.questionText}>{props.answer.text}</Text>
+    </TouchableOpacity>
+  )
+}
+
 function QuizView(props) {
   return (
     <View style={styles.container}>
@@ -26,31 +47,39 @@ function QuizView(props) {
         <Text style={styles.questionText}>{props.questionText}</Text>
       </View>
       {props.answers.map((answer, i) => {
-        let valid =
-          props.answered && (answer.valid ? styles.valid : styles.wrong)
         return (
-          <TouchableOpacity
-            style={[styles.textContainer, styles.answer, valid]}
+          <AnswerBtn
+            answer={answer}
+            i={i}
             key={i}
-            onPress={() => {
-              props.setAnswered(true)
-              props.setStat([...props.stat, answer.valid])
-            }}
-          >
-            <Text style={styles.questionText}>{answer.text}</Text>
-          </TouchableOpacity>
+            questionText={props.questionText}
+            answers={props.answers}
+            answerText={props.answerText}
+            answered={props.answered}
+            stat={props.stat}
+            questionId={props.questionId}
+            setAnswered={props.setAnswered}
+            setQuestionId={props.setQuestionId}
+            setStat={props.setStat}
+          />
         )
       })}
+
       {props.answered && (
-        <TouchableOpacity
-          style={[styles.textContainer, styles.answer]}
-          onPress={() => {
-            props.setAnswered(false)
-            props.setQuestionId(props.questionId + 1)
-          }}
-        >
-          <Text style={styles.questionText}>Suivant</Text>
-        </TouchableOpacity>
+        <>
+          {props.answerText && (
+            <Text style={styles.answerText}>{props.answerText}</Text>
+          )}
+          <TouchableOpacity
+            style={[styles.textContainer, styles.answer]}
+            onPress={() => {
+              props.setAnswered(false)
+              props.setQuestionId(props.questionId + 1)
+            }}
+          >
+            <Text style={styles.questionText}>Suivant</Text>
+          </TouchableOpacity>
+        </>
       )}
     </View>
   )
@@ -75,6 +104,7 @@ function Quiz() {
       <QuizView
         questionText={question.questionText}
         answers={question.answers}
+        answerText={question.answerText}
         answered={answered}
         stat={stat}
         questionId={questionId}
@@ -199,6 +229,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   questionText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontFamily: 'Fedora-Regular',
+  },
+  answerText: {
+    marginTop: 30,
     textAlign: 'center',
     fontSize: 20,
     fontFamily: 'Fedora-Regular',

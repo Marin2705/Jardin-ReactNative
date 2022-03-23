@@ -1,9 +1,29 @@
+import { useEffect, useRef } from 'react'
 import { StyleSheet } from 'react-native'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 
 function MapContainer(props) {
+  const _map = useRef(null)
+
+  useEffect(() => {
+    console.log('effect')
+    if (_map.current) {
+      console.log('effect map current')
+      _map.current.animateCamera(
+        {
+          center: {
+            latitude: props.lat,
+            longitude: props.long,
+          },
+        },
+        5000
+      )
+    }
+  }, [props.lat])
+
   return (
     <MapView
+      ref={_map}
       style={styles.map}
       initialRegion={{
         latitude: parseFloat(props.lat),
