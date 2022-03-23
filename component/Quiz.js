@@ -119,7 +119,7 @@ function Quiz() {
             style={[styles.share]}
             onPress={() => {
               const quote = encodeURI(
-                `J'ai eu ${statDivision} bonnes réponses à ce Quiz sur le Jardin du Luxembourg !`
+                `J'ai eu ${statDivision} bonnes réponses à ce quiz sur le Jardin du Luxembourg !`
               )
               const link = encodeURI('https://zoey-app.fr')
               const url = `https://www.facebook.com/sharer/sharer.php?u=${link}&quote=${quote}`

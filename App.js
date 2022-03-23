@@ -56,7 +56,7 @@ export default function App() {
             name="Formulaire"
             component={Quiz}
             options={{
-              tabBarLabel: 'Formulaire',
+              tabBarLabel: 'Quiz',
               tabBarIcon: () => <Form />,
             }}
           />
