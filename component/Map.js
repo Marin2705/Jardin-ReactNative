@@ -1,6 +1,5 @@
 import {
   StyleSheet,
-  Text,
   Button,
   Dimensions,
   View,
@@ -29,6 +28,8 @@ function Map({ navigation }) {
             latitudeDelta: 0.01,
             longitudeDelta: 0.01,
           }}
+          minZoomLevel={10}
+          maxZoomLevel={20}
           provider={PROVIDER_GOOGLE}
         >
           <Marker

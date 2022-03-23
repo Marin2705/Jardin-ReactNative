@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, Text, TextInput, Pressable, KeyboardAvoidingView } from 'react-native'
+import React, { useState } from 'react'
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+} from 'react-native'
+import MapContainer from './MapContainer'
 
 // Accepter la fonction childToParent passée en prop
-function NewEvent({childToParent}) {
+function NewEvent({ childToParent }) {
+  // BOX SHADOW QUI FONCTIONNE SEULEMENT SUR MOBILE ???
+  // generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
 
-    // BOX SHADOW QUI FONCTIONNE SEULEMENT SUR MOBILE ???
-    // generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
-
-    const [touchY, setTouchY] = useState(0);
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [address, setAddress] = useState('');
+  const [touchY, setTouchY] = useState(0)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [address, setAddress] = useState('')
 
     const onSubmit = () => {
-        let data = {'name': name, 'description' : description, 'address': address}
+        let data = { name: name, description: description, address: address }
 
         fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addEvent',
         {
@@ -68,6 +76,10 @@ function NewEvent({childToParent}) {
                     </View>
                     <View style={styles.map}>
                         {/* Localisation correspondant à l'adresse saisie */}
+<<<<<<< HEAD
+=======
+                        <MapContainer lat={48.846836} long={2.337179} />
+>>>>>>> e3644b7006e6919fa7cef8d689bc1918189a8eca
                     </View>
                 
                     <Pressable style={styles.button} onPress={onSubmit}>
@@ -105,48 +117,48 @@ function NewEvent({childToParent}) {
 // };
 
 const styles = StyleSheet.create({
-    popup: {
-        width: '100%',
-        paddingHorizontal: 40,
-        backgroundColor: '#FFFFFF',
-        position: 'absolute',
-        bottom: 0,
-        zIndex: 5
-    },
-    form: {
-        marginTop: 20,
-    },
-    handle: {
-        width: 70,
-        height: 5,
-        backgroundColor: '#ACACAC',
-        alignSelf: 'center',
-        borderRadius: 5
-    },
-    input: {
-        marginBottom: 50,
-        padding: 5,
-        borderBottomWidth: 1
-    },
-    map: {
-        paddingVertical: 80,
-        backgroundColor: '#DCFFCB',
-    },
-    button: {
-        width: 180,
-        height: 40,
-        marginVertical: 40,
-        alignSelf: 'center',
-        backgroundColor: '#E22A2A',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-    },
-    textButton: {
-        fontFamily: 'Fedora-Regular',
-        fontSize: 20,
-        color: '#FFFFFF'
-    }
+  popup: {
+    width: '100%',
+    paddingHorizontal: 40,
+    backgroundColor: '#FFFFFF',
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 5,
+  },
+  form: {
+    marginTop: 20,
+  },
+  handle: {
+    width: 70,
+    height: 5,
+    backgroundColor: '#ACACAC',
+    alignSelf: 'center',
+    borderRadius: 5,
+  },
+  input: {
+    marginBottom: 50,
+    padding: 5,
+    borderBottomWidth: 1,
+  },
+  map: {
+    height: 200,
+    backgroundColor: '#DCFFCB',
+  },
+  button: {
+    width: 180,
+    height: 40,
+    marginVertical: 40,
+    alignSelf: 'center',
+    backgroundColor: '#E22A2A',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  textButton: {
+    fontFamily: 'Fedora-Regular',
+    fontSize: 20,
+    color: '#FFFFFF',
+  },
 })
 
 export default NewEvent

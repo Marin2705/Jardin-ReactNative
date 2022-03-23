@@ -1,0 +1,32 @@
+[
+    {
+        "questionText": "Question 1 : Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+        "answers": [
+            {
+                "text": "Réponse 1",
+                "valid": false
+            },
+            {
+                "text": "Réponse 2",
+                "valid": true
+            },
+            {
+                "text": "Réponse 3",
+                "valid": false
+            }
+        ]
+    },
+    {
+        "questionText": "Question 2 : Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+        "answers": [
+            {
+                "text": "Réponse 1",
+                "valid": true
+            },
+            {
+                "text": "Réponse 2",
+                "valid": false
+            }
+        ]
+    }
+]
