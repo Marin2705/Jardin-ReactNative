@@ -3,17 +3,21 @@ import {
   Text,
   View,
   ImageBackground,
+  Image,
   Dimensions,
   ScrollView,
   Pressable,
-  Button,
 } from 'react-native'
 import { useState, useEffect, useRef } from 'react'
+import MapContainer from './MapContainer'
 import bgImage from '../assets/home.jpg'
 import HomePointer from '../assets/HomePointer'
 import ScrollArrow from '../assets/ScrollArrow'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Map from './Map'
+import presentation from '../assets/presentation.jpg'
+import activity from '../assets/activity.jpg'
+import chairs from '../assets/chairs.jpg'
 
 const Stack = createNativeStackNavigator()
 const window = Dimensions.get('window')
@@ -62,11 +66,67 @@ function HomeMain({ navigation }) {
         <View style={styles.presentation}>
           <Text style={styles.presentationH1}>Présentation</Text>
           <Text style={styles.presentationText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-            quibusdam ad odio quasi, corrupti reprehenderit, quidem debitis,
-            quisquam dolore mollitia perspiciatis repellat molestiae possimus!
-            Commodi laboriosam et ex molestiae natus.
+            Situé dans le 6e arrondissement, en bordure de
+            Saint-Germain-des-Prés et du quartier Latin, le jardin du Luxembourg
+            est un des principaux et des plus beaux îlots de verdure du centre
+            de Paris.
           </Text>
+          <Text style={styles.presentationText}>
+            Il fut construit pour l'hôtel du Luxembourg, aujourd'hui Palais du
+            Luxembourg. Le jardin est aujourd'hui ouvert au public, mais le
+            palais abrite le Sénat, qui assure donc sa gestion et son entretien.
+          </Text>
+          <Text style={styles.presentationText}>
+            Son organisation s’inspire du jardin florentin Boboli et il a été
+            créé à l’initiative de la reine Marie de Médicis en 1612. D’une
+            superficie de 25 hectares, le jardin se divise en une partie à la
+            française et l’autre à l'anglaise. Entre les deux s'étend une forêt
+            géométrique et un grand bassin.
+          </Text>
+          <Image style={styles.image} source={presentation} />
+          <Text style={styles.presentationH2}>Activités</Text>
+          <Text style={styles.presentationText}>
+            Le jardin comporte des terrains de tennis, de basket-ball, de jeu de
+            Paume, des tables de jeu d'échecs et de bridge.
+          </Text>
+          <Image style={styles.image} source={activity} />
+          <Text style={styles.presentationH2}>Dans la culture</Text>
+          <Text style={styles.presentationText}>
+            Souvent aperçu dans des films et cité dans des romans, le jardin est
+            par exemple récemment apparu au cinéma dans Illusions Perdues de
+            Xavier Giannoli, une adaptation de Balzac.
+          </Text>
+          <Text style={styles.presentationH2}>Entretien</Text>
+          <Text style={styles.presentationText}>
+            Fort d'une équipe de 60 jardiniers sélectionnés sur concours, le
+            jardin fait partie du patrimoine et de l'image de la France.
+            N'appartenant pas à la municipalité, son entretien est financé par
+            le Sénat, presque exclusivement par des dotations de l'État, à
+            hauteur de plus de 12 millions d'euros par an.
+          </Text>
+          <Text style={styles.presentationText}>
+            Contrairement aux jardins gérés par la Mairie de Paris, qui
+            s'appuyent sur des pépinières à l'extérieur de la ville, les fleurs
+            du jardin sont cultivées sur place, dans des serres situées à
+            l'angle sud-est du jardin.
+          </Text>
+          <View style={styles.map}>
+            <MapContainer
+              lat={48.8450641}
+              long={2.3379879}
+              delta={0.001}
+              type="satellite"
+            />
+          </View>
+          <Text style={styles.presentationH2}>Anecdotes</Text>
+          <Text style={styles.presentationText}>
+            Connu pour son parc de chaises vertes à disposition du public dans
+            tous le jardin, très prisées des parisiens, le droit de s'assoir
+            n'est en réalité gratuit que depuis 1974. Il fallait auparavant
+            s'affranchir d'un droit de 20 centimes de francs, collecté par des
+            "chaisiers" - loueur de chaises -, un métier aujourd'hui disparu.
+          </Text>
+          <Image style={styles.image} source={chairs} />
         </View>
       </ScrollView>
     </>
@@ -144,8 +204,22 @@ const styles = StyleSheet.create({
     top: '7%',
   },
   presentation: {
-    height: vh,
+    minHeight: vh,
     backgroundColor: 'white',
+    paddingBottom: 40,
+    alignItems: 'center',
+  },
+  map: {
+    marginTop: 30,
+    height: 200,
+    width: '80%',
+    backgroundColor: '#DCFFCB',
+  },
+  image: {
+    margin: 30,
+    marginBottom: 0,
+    width: 0.8 * vw,
+    height: (3 / 4) * 0.8 * vw,
   },
   presentationH1: {
     textAlign: 'center',
@@ -156,10 +230,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Fedora-Regular',
     color: 'black',
   },
+  presentationH2: {
+    textAlign: 'center',
+    zIndex: 1,
+    marginTop: 40,
+    fontSize: 30,
+    alignItems: 'flex-start',
+    fontFamily: 'Fedora-Regular',
+    color: 'black',
+  },
   presentationText: {
     textAlign: 'justify',
     zIndex: 1,
     margin: 30,
+    marginBottom: 0,
     fontSize: 20,
     alignItems: 'flex-start',
     fontFamily: 'Fedora-Regular',
