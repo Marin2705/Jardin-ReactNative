@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Dimensions,
   Linking,
+  ScrollView,
 } from 'react-native'
 import bgImage from '../assets/home.jpg'
 import questions from '../assets/quiz.json'
@@ -101,17 +102,19 @@ function Quiz() {
 
   if (question) {
     return (
-      <QuizView
-        questionText={question.questionText}
-        answers={question.answers}
-        answerText={question.answerText}
-        answered={answered}
-        stat={stat}
-        questionId={questionId}
-        setAnswered={setAnswered}
-        setQuestionId={setQuestionId}
-        setStat={setStat}
-      />
+      <ScrollView>
+        <QuizView
+          questionText={question.questionText}
+          answers={question.answers}
+          answerText={question.answerText}
+          answered={answered}
+          stat={stat}
+          questionId={questionId}
+          setAnswered={setAnswered}
+          setQuestionId={setQuestionId}
+          setStat={setStat}
+        />
+      </ScrollView>
     )
   } else {
     const statDivision =
@@ -151,7 +154,7 @@ function Quiz() {
               const quote = encodeURI(
                 `J'ai eu ${statDivision} bonnes réponses à ce quiz sur le Jardin du Luxembourg !`
               )
-              const link = encodeURI('https://zoey-app.fr')
+              const link = encodeURI('https://zoey-app.fr') // remplace with actual link
               const url = `https://www.facebook.com/sharer/sharer.php?u=${link}&quote=${quote}`
               Linking.openURL(url)
             }}
