@@ -1,10 +1,83 @@
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import AsyncStorage  from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect } from 'react';
+import likeOff from '../assets//likeOff.png'
+import likeOn from '../assets/likeOn.png'
+
 
 function Item(props) {
+    const [imglike, setLike] = useState(false);
+    const data = {"id": props.data.id};
+
+
+    AsyncStorage.getItem('likes').then(local => {
+        if (local != null) {
+           if (JSON.parse(local).filter(item => item.id == props.data.id).length !== 0) {
+                setLike(true)
+           } 
+        }     
+    })
+
+    const like = () => {
+
+        // Si déjà liké
+        if (imglike){
+
+            // Retirer le like du local
+            AsyncStorage.getItem('likes').then(local => {
+                let likes = JSON.parse(local).filter(item => item.id !== props.data.id)
+
+                AsyncStorage.setItem('likes', JSON.stringify(likes))
+                props.data.likes--
+                setLike(false)
+            })
+
+            // Retirer le like de la bdd
+            fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=deleteLike',
+                {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    method: "POST",
+                    body: JSON.stringify(data)
+                })
+
+        } else {
+            
+            // Ajouter le like dans le storage
+            AsyncStorage.getItem('likes').then(local => {
+                let likes = [];
+
+                if (local != null){
+                    likes = JSON.parse(local);
+                }
+
+                likes.push(data)
+                AsyncStorage.setItem('likes', JSON.stringify(likes))
+
+                props.data.likes++
+                setLike(true)
+
+            })
+                       
+            // Ajouter le like dans la bdd
+            fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addLike',
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+        }
+    }
+
     return (
         <View style={styles.item}>
-             {/* <Text>{props.data}</Text> */}
             <View style={[styles.map, {flex: 1}]}>
+                <Text>{props.data.id}</Text>
                 {/* Carte */}
             </View>
 
@@ -16,7 +89,11 @@ function Item(props) {
                     <Text style={styles.text}>le {props.data.date}</Text>
 
                     <View style={[styles.row]}>
-                        <Image style={styles.likeIcon} source={require('../assets/like.png')} />
+
+                        <TouchableOpacity onPress={like}>
+                            <Image style={styles.likeIcon} source={ imglike ? likeOn : likeOff } />
+                        </TouchableOpacity>
+
                         <Text style={styles.text}>{props.data.likes}</Text>
                     </View>
                 </View>
@@ -59,8 +136,8 @@ const styles = StyleSheet.create({
         fontSize: 11
     },
     likeIcon: {
-        width: 13, 
-        height: 11,
+        width: 15, 
+        height: 15,
         marginRight: 5
     }
 })
