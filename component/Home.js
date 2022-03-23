@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
+    marginTop: 30,
     height: 200,
     width: '80%',
     backgroundColor: '#DCFFCB',
