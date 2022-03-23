@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   presentationH1: {
     textAlign: 'center',
     zIndex: 1,
-    marginTop: 40,
+    marginTop: 60,
     fontSize: 40,
     alignItems: 'flex-start',
     fontFamily: 'Fedora-Regular',

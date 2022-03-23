@@ -20,79 +20,72 @@ function NewEvent({ childToParent }) {
   const [description, setDescription] = useState('')
   const [address, setAddress] = useState('')
 
-  const onSubmit = () => {
-    let data = { name: name, description: description, address: address }
+    const onSubmit = () => {
+        let data = { name: name, description: description, address: address }
 
-    fetch(
-      'http:///172.24.141.205/reactnative/Jardin-ReactNative/assets/api/insertData.php',
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      }
-    ).then(() => {
-      childToParent()
-    })
-  }
+        fetch('http://172.24.141.205/reactnative/Jardin-ReactNative/assets/api/Surroundings.php?action=addEvent',
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            childToParent();
+        })
+    }
 
-  return (
-    <KeyboardAvoidingView style={[styles.popup, styles.boxShadow]}>
-      {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
-      <Pressable
-        style={{ paddingVertical: 15 }}
-        onTouchStart={(e) => setTouchY(e.nativeEvent.pageY)}
-        onTouchEnd={(e) => {
-          if (e.nativeEvent.pageY - touchY > 20) {
-            childToParent()
-          }
-        }}
-      >
-        <View style={styles.handle}></View>
-      </Pressable>
+    return (
+        <View style={[styles.popup, styles.boxShadow]}>
 
-      <ScrollView style={styles.form}>
-        <View>
-          <Text>Nom</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Type here to translate!"
-            onChangeText={(insertedName) => setName(insertedName)}
-            defaultValue={name}
-          />
+            {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
+            <Pressable style={{paddingVertical: 15}}
+            onTouchStart={e=> setTouchY(e.nativeEvent.pageY)}
+            onTouchEnd={e => {
+                if (e.nativeEvent.pageY - touchY > 20) {
+                    childToParent()
+                }
+            }}>
+                <View style={styles.handle}></View>
+            </Pressable>
+
+            <KeyboardAvoidingView  behavior="height">
+                <ScrollView style={styles.form}>
+                    <View>
+                        <Text>Nom</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedName => setName(insertedName)}
+                        defaultValue={name} />
+                    </View>
+                    <View>
+                        <Text>Description</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedDesc => setDescription(insertedDesc)}
+                        defaultValue={description} />
+                    </View>
+                    <View>
+                        <Text>Adresse</Text>
+                        <TextInput style={styles.input}
+                        placeholder="Type here to translate!"
+                        onChangeText={insertedAddress => setAddress(insertedAddress)}
+                        defaultValue={address} />
+                    </View>
+                    <View style={styles.map}>
+                        {/* Localisation correspondant à l'adresse saisie */}
+                        <MapContainer lat={48.846836} long={2.337179} />
+                    </View>
+                
+                    <Pressable style={styles.button} onPress={onSubmit}>
+                        <Text style={styles.textButton}>Partager</Text>
+                    </Pressable>
+                </ScrollView> 
+            </KeyboardAvoidingView>
         </View>
-        <View>
-          <Text>Description</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Type here to translate!"
-            onChangeText={(insertedDesc) => setDescription(insertedDesc)}
-            defaultValue={description}
-          />
-        </View>
-        <View>
-          <Text>Adresse</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Type here to translate!"
-            onChangeText={(insertedAddress) => setAddress(insertedAddress)}
-            defaultValue={address}
-          />
-        </View>
-
-        <View style={styles.map}>
-          {/* Localisation correspondant à l'adresse saisie */}
-          <MapContainer lat={48.846836} long={2.337179} />
-        </View>
-
-        <Pressable style={styles.button} onPress={onSubmit}>
-          <Text style={styles.textButton}>Partager</Text>
-        </Pressable>
-      </ScrollView>
-    </KeyboardAvoidingView>
-  )
+    )
 }
 
 // Box Shadow en fonction de l'OS de l'appareil (SEULEMENT SUR MOBILE ??)
