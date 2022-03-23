@@ -16,31 +16,38 @@ function ShareEvent({ childToParent }) {
   const [touchY, setTouchY] = useState(0);
 
   return (
-    <View style={styles.popup}>
-      {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
-      <Pressable
-        style={{ paddingVertical: 15 }}
-        onTouchStart={(e) => setTouchY(e.nativeEvent.pageY)}
-        onTouchEnd={(e) => {
-          if (e.nativeEvent.pageY - touchY > 20) {
-            childToParent()
-          }
-        }}
-      >
-        <View style={styles.handle}></View>
-      </Pressable>
+    <View style={styles.containerPopup}>
+      <Pressable style={styles.outside}
+      onTouchEnd={(e) => {
+        childToParent()
+      }}>
 
-      <Pressable style={styles.containShare} onPress={() =>{
-        const quote = encodeURI(
-          `J'ai trouvé une application sur les jardins du Luxembourg !
-          Rejoignez-nous !`);
-        const link = encodeURI('https://zoey-app.fr');
-        const url = `https://www.facebook.com/sharer/sharer.php?u=${link}&quote=${quote}`;
-        Linking.openURL(url); }}>
-        <Text style={styles.title}>Donnez-nous votre avis !</Text>
-        <Facebook/>
       </Pressable>
+      <View style={styles.popup}>
+        {/* Drag vers le bas -> déclencher l'évènement childToParent qui sera détectée par le component parent */}
+        <Pressable
+          style={{ paddingVertical: 15 }}
+          onTouchStart={(e) => setTouchY(e.nativeEvent.pageY)}
+          onTouchEnd={(e) => {
+            if (e.nativeEvent.pageY - touchY > 20) {
+              childToParent()
+            }
+          }}
+        >
+          <View style={styles.handle}></View>
+        </Pressable>
 
+        <Pressable style={styles.containShare} onPress={() =>{
+          const quote = encodeURI(
+            `J'ai trouvé une application sur les jardins du Luxembourg !
+            Rejoignez-nous !`);
+          const link = encodeURI('https://zoey-app.fr');
+          const url = `https://www.facebook.com/sharer/sharer.php?u=${link}&quote=${quote}`;
+          Linking.openURL(url); }}>
+          <Text style={styles.title}>Donnez-nous votre avis !</Text>
+          <Facebook/>
+        </Pressable>
+      </View>
     </View>
   )
 }
@@ -71,6 +78,13 @@ function ShareEvent({ childToParent }) {
 // };
 
 const styles = StyleSheet.create({
+  containerPopup:{
+    flex: 1
+  },
+  outside: {
+    width: '100%',
+    height: "70%" ,
+  },
   popup: {
     width: '100%',
     height: "30%" ,
