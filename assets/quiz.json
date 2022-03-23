@@ -1,32 +1,94 @@
 [
     {
-        "questionText": "Question 1 : Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+        "questionText": "Question 1 : dans quel arrondissement se trouve le Jardin du Luxembourg ?",
         "answers": [
             {
-                "text": "Réponse 1",
+                "text": "Paris 1",
                 "valid": false
             },
             {
-                "text": "Réponse 2",
+                "text": "Paris 6",
                 "valid": true
             },
             {
-                "text": "Réponse 3",
+                "text": "Paris 14",
                 "valid": false
             }
         ]
     },
     {
-        "questionText": "Question 2 : Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+        "questionText": "Question 2 : à qui appartient le Jardin ?",
         "answers": [
             {
-                "text": "Réponse 1",
+                "text": "L'État",
+                "valid": false
+            },
+            {
+                "text": "La Mairie de Paris",
+                "valid": false
+            },
+            {
+                "text": "Le sénat",
                 "valid": true
             },
             {
-                "text": "Réponse 2",
+                "text": "L'assemblée nationale",
                 "valid": false
             }
         ]
+    },
+    {
+        "questionText": "Question 3 : quel métier disparu existait au Jardin du Luxembourg jusqu'en 1974 ?",
+        "answers": [
+            {
+                "text": "Poinçonneur",
+                "valid": false
+            },
+            {
+                "text": "Nautonnier",
+                "valid": false
+            },
+            {
+                "text": "Chaisier",
+                "valid": true
+            },
+            {
+                "text": "Gardien de phare",
+                "valid": false
+            }
+        ],
+        "answerText": "Jusqu'en 1974, les chaisiers récoltaient les frais de 20 centimes de francs auprès des parisiens qui voulaient profiter des chaises du Jardin."
+    },
+    {
+        "questionText": "Question 4 : le jardin a déjà accueilli des épreuves des jeux olympiques.",
+        "answers": [
+            {
+                "text": "Vrai",
+                "valid": true
+            },
+            {
+                "text": "Faux",
+                "valid": false
+            }
+        ],
+        "answerText": "En 1900, le terrain de jeu de paume du Jardin accueille les Jeux Olympiques d'été."
+    },
+    {
+        "questionText": "Question 5 : où sont cultivées les fleurs du jardin ?",
+        "answers": [
+            {
+                "text": "Sur place",
+                "valid": true
+            },
+            {
+                "text": "Dans la pépinière du Centre horticole de la Ville de Paris",
+                "valid": false
+            },
+            {
+                "text": "Dans le Jardin des Plantes à Paris",
+                "valid": false
+            }
+        ],
+        "answerText": "Le jardin possède sa propre équipe de jardiniers qui préparent les fleurs sur place, dans des serres, et entretiennent le jardin toute l'année."
     }
 ]
