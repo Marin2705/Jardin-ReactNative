@@ -1,4 +1,3 @@
-import { render } from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, FlatList, Pressable, Image, Modal, SafeAreaView } from 'react-native'
 import Item from './Item'
@@ -6,14 +5,13 @@ import NewEvent from './NewEvent'
 
 function Surroundings() {
 
-    // BOX SHADOW QUI FONCTIONNE SEULEMENT SUR MOBILE ???
-    // generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
+    generateBoxShadowStyle(-2, 4, '#000000', 0.25, 3, 4, '#000000');
 
     const [modalVisible, setModalVisible] = useState(false);
     const [data, setData] = useState('');
   
 
-    const childToParent = () => {
+    const CloseModal = () => {
       setModalVisible(false)
       fetchData()
     }
@@ -48,14 +46,14 @@ function Surroundings() {
                 renderItem={({item}) => <Item data={item}/>}
             />
             {/* Faire apparaitre la popup au clic */}
-            <Pressable style={[styles.addButton]} onPress={() => {
+            <Pressable style={[styles.addButton, styles.boxShadow]} onPress={() => {
               setModalVisible(true);
             }}>
               <Image source={require('../assets/add.png')}/>
             </Pressable>
 
         </View>
-        {/* Popup */}
+
         <Modal
           animationType="slide"
           transparent={true}
@@ -65,7 +63,7 @@ function Surroundings() {
           }}
         >
           {/* Passer une prop au component enfant et recevoir l'évènement créé par l'enfant */}
-          <NewEvent childToParent={childToParent} />
+          <NewEvent CloseModal={CloseModal} />
 
           </Modal>
       </SafeAreaView>
@@ -73,29 +71,29 @@ function Surroundings() {
 }
 
 // Box Shadow en fonction de l'OS de l'appareil (SEULEMENT SUR MOBILE ??)
-// const generateBoxShadowStyle = (
-//     xOffset,
-//     yOffset,
-//     shadowColorIos,
-//     shadowOpacity,
-//     shadowRadius,
-//     elevation,
-//     shadowColorAndroid,
-//   ) => {
-//     if (Platform.OS === 'ios') {
-//       styles.boxShadow = {
-//         shadowColor: shadowColorIos,
-//         shadowOffset: {width: xOffset, height: yOffset},
-//         shadowOpacity,
-//         shadowRadius,
-//       };
-//     } else if (Platform.OS === 'android') {
-//       styles.boxShadow = {
-//         elevation,
-//         shadowColor: shadowColorAndroid,
-//       };
-//     }
-// };
+const generateBoxShadowStyle = (
+    xOffset,
+    yOffset,
+    shadowColorIos,
+    shadowOpacity,
+    shadowRadius,
+    elevation,
+    shadowColorAndroid,
+  ) => {
+    if (Platform.OS === 'ios') {
+      styles.boxShadow = {
+        shadowColor: shadowColorIos,
+        shadowOffset: {width: xOffset, height: yOffset},
+        shadowOpacity,
+        shadowRadius,
+      };
+    } else if (Platform.OS === 'android') {
+      styles.boxShadow = {
+        elevation,
+        shadowColor: shadowColorAndroid,
+      };
+    }
+};
 
 const styles = StyleSheet.create({
     title: {
