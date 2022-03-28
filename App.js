@@ -13,9 +13,8 @@ import * as React from 'react'
 import { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false)
@@ -25,7 +24,7 @@ export default function App() {
   })
 
   const childToParent = () => {
-    setModalVisible(false);
+    setModalVisible(false)
   }
 
   if (!fontsLoaded) {
@@ -34,68 +33,68 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
-          <NavigationContainer>
-            <Tab.Navigator
-              screenOptions={{
-                headerShown: false,
-              }}
-              initialRouteName="Home"
-            >
-              <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{
-                  tabBarLabel: 'Home',
-                  tabBarIcon: () => <Info />,
-                }}
-              />
-              <Tab.Screen
-                name="Surroundings"
-                component={Surroundings}
-                options={{
-                  tabBarLabel: 'Surroundings',
-                  tabBarIcon: () => <People />,
-                }}
-              />
-              <Tab.Screen
-                name="Formulaire"
-                component={Quiz}
-                options={{
-                  tabBarLabel: 'Formulaire',
-                  tabBarIcon: () => <Form />,
-                }}
-              />
-              <Tab.Screen
-                name="Share"
-                component={Quiz}
-                options={{
-                  tabBarLabel: 'Partager',
-                  tabBarIcon: () => <Share />,
-                }}
-                listeners={{
-                  tabPress: e => {
-                    // Prevent default action
-                    e.preventDefault();
-                    setModalVisible(!modalVisible);
-                  },
-                }}
-              />
-            </Tab.Navigator>
-          </NavigationContainer>
-            
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible)
+      <StatusBar backgroundColor="#000000" />
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
           }}
-          style={styles.modal}
+          initialRouteName="Home"
         >
-          <ShareEvent childToParent={childToParent}/>
-        </Modal>
-      </View>
+          <Tab.Screen
+            name="Home"
+            component={Home}
+            options={{
+              tabBarLabel: 'Home',
+              tabBarIcon: () => <Info />,
+            }}
+          />
+          <Tab.Screen
+            name="Surroundings"
+            component={Surroundings}
+            options={{
+              tabBarLabel: 'Surroundings',
+              tabBarIcon: () => <People />,
+            }}
+          />
+          <Tab.Screen
+            name="Formulaire"
+            component={Quiz}
+            options={{
+              tabBarLabel: 'Formulaire',
+              tabBarIcon: () => <Form />,
+            }}
+          />
+          <Tab.Screen
+            name="Share"
+            component={Quiz}
+            options={{
+              tabBarLabel: 'Partager',
+              tabBarIcon: () => <Share />,
+            }}
+            listeners={{
+              tabPress: (e) => {
+                // Prevent default action
+                e.preventDefault()
+                setModalVisible(!modalVisible)
+              },
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible)
+        }}
+        style={styles.modal}
+      >
+        <ShareEvent childToParent={childToParent} />
+      </Modal>
+    </View>
   )
 }
 

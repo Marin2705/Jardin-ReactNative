@@ -37,7 +37,10 @@ function MapContainer(props) {
       provider={PROVIDER_GOOGLE}
     >
       <Marker
-        coordinate={{ latitude: parseFloat(props.lat), longitude: parseFloat(props.long) }}
+        coordinate={{
+          latitude: parseFloat(props.lat),
+          longitude: parseFloat(props.long),
+        }}
         title={props.name}
       />
     </MapView>
@@ -46,6 +49,7 @@ function MapContainer(props) {
 
 const styles = StyleSheet.create({
   map: {
+    zIndex: 0,
     margin: 0,
     width: '100%',
     height: '100%',
