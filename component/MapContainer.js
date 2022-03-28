@@ -6,7 +6,6 @@ function MapContainer(props) {
   const _map = useRef(null)
 
   useEffect(() => {
-    console.log('effect')
     if (_map.current) {
       console.log('effect map current')
       _map.current.animateCamera(
@@ -49,7 +48,6 @@ function MapContainer(props) {
 
 const styles = StyleSheet.create({
   map: {
-    zIndex: 0,
     margin: 0,
     width: '100%',
     height: '100%',

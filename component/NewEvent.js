@@ -122,6 +122,16 @@ function NewEvent({ CloseModal }) {
             defaultValue={address}
           />
 
+          <View style={styles.map}>
+            {/* Localisation correspondant à l'adresse saisie */}
+            <MapContainer
+              lat={coord[1]}
+              long={coord[0]}
+              name={name}
+              description={description}
+            />
+          </View>
+
           <FlatList
             style={[
               styles.list,
@@ -149,16 +159,6 @@ function NewEvent({ CloseModal }) {
                 <Text>{item.name}</Text>
               </Pressable>
             )}
-          />
-        </View>
-
-        <View style={styles.map}>
-          {/* Localisation correspondant à l'adresse saisie */}
-          <MapContainer
-            lat={coord[1]}
-            long={coord[0]}
-            name={name}
-            description={description}
           />
         </View>
 
@@ -202,7 +202,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     position: 'absolute',
     bottom: 0,
-    zIndex: 5,
   },
   form: {
     marginTop: 20,
@@ -227,7 +226,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 55,
     margin: 'auto',
-    zIndex: 5,
   },
   listItem: {
     paddingVertical: 15,
@@ -236,7 +234,6 @@ const styles = StyleSheet.create({
     borderBottomColor: '#C4C4C4',
   },
   map: {
-    zIndex: 0,
     height: 200,
     backgroundColor: '#DCFFCB',
   },
