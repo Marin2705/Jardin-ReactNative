@@ -5,9 +5,9 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 function MapContainer(props) {
   const _map = useRef(null)
 
+  // animateCamera had issues on android
   useEffect(() => {
     if (_map.current) {
-      console.log('effect map current')
       _map.current.animateCamera(
         {
           center: {
@@ -17,6 +17,7 @@ function MapContainer(props) {
         },
         5000
       )
+      console.log('effect map current', props.lat, props.long)
     }
   }, [props.lat])
 

@@ -9,7 +9,7 @@ import * as React from 'react'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 
 const { StatusBarManager } = NativeModules
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 30 : StatusBarManager.HEIGHT
 
 function Map({ navigation }) {
   return (
@@ -46,9 +46,6 @@ function Map({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'red',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     paddingTop: Platform.OS === 'ios' ? STATUSBAR_HEIGHT : 0,
   },
   map: {
